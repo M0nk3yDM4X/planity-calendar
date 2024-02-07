@@ -1,14 +1,11 @@
+import Calendar from './components/calendar'
+import { CALENDAR_RANGE } from './config'
 import { useEventList } from './hooks/useEventList'
 
 function App() {
-    const eventList = useEventList()
-    console.log('eventList enriched: ', eventList)
+    const { eventList } = useEventList()
 
-    return (
-        <div>
-            <span>Hello World</span>
-        </div>
-    )
+    return <Calendar eventList={eventList} calendarRange={CALENDAR_RANGE} />
 }
 
 export default App
