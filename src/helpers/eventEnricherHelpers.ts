@@ -1,7 +1,7 @@
 import { addMinutes } from 'date-fns'
 import { IRawEvent, IBuiltEvent, IEnrichedEvent } from '../types'
 import { convertToDate } from './timeHelpers'
-import { getEventMaxOverlap, hasOverlap, isNonOverlappingPlacedEvents } from './overlapHelpers'
+import { getEventMaxOverlap, hasOverlap, isNonOverlappingPlacedEvents } from './overlapHelpers/overlapHelpers'
 
 export function addTimeRangeToRawEventList(eventList: IRawEvent[], refDate: Date): IBuiltEvent[] {
     const builtEventList = eventList.map(({ start, duration, id }) => {

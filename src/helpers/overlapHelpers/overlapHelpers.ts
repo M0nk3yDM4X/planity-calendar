@@ -1,5 +1,5 @@
 import { isAfter, isBefore, isEqual } from 'date-fns'
-import { ITimeRange, IBuiltEvent } from '../types'
+import { ITimeRange, IBuiltEvent } from '../../types'
 
 export function isNonOverlappingPlacedEvents(event: ITimeRange, placedEventList: ITimeRange[]): boolean {
     return placedEventList.length === 0 || placedEventList.every(placedElement => !hasOverlap(event, placedElement))
