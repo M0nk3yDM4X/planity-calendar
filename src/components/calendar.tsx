@@ -1,4 +1,4 @@
-import { getEventWidth } from '../helpers/sizeAndPositionHelpers'
+import { getEventDistanceFromTop, getEventViewHeight, getEventWidth } from '../helpers/sizeAndPositionHelpers'
 import { getTimeDifferenceInMinutes } from '../helpers/timeHelpers'
 import { EventList } from '../types'
 import Event from './event'
@@ -17,22 +17,19 @@ function Calendar({ eventList, calendarRange: { calendarEnd, calendarStart } }: 
 
     return (
         <div className="Calendar">
-            {eventList.map((event, index) => {
-                console.log('event id:', event.id)
-                const timeDifferenceFromCalendarStartToEventStart = getTimeDifferenceInMinutes(calendarStart, event.startDate)
-                console.log('timeDifferenceFromCalendarStartToEventStart: ', timeDifferenceFromCalendarStartToEventStart)
+            {eventList.map(({ duration, id, maxOverlap, numColumn, startDate }) => {
+                const timeDifferenceFromCalendarStartToEventStart = getTimeDifferenceInMinutes(calendarStart, startDate)
 
-                const eventWidth = getEventWidth(event.maxOverlap)
-                console.log('eventWidth:', eventWidth)
+                const eventWidth = getEventWidth(maxOverlap)
 
                 return (
                     <Event
-                        key={`eventId:${event.id}`}
-                        eventWidth={50}
-                        eventDistanceFromLeft={50}
-                        eventDistanceFromTop={50}
-                        eventHeight={50}
-                        eventId={index}
+                        key={`eventId:${id}`}
+                        eventWidth={eventWidth}
+                        eventDistanceFromLeft={numColumn * eventWidth}
+                        eventDistanceFromTop={getEventDistanceFromTop(timeDifferenceFromCalendarStartToEventStart, calendarMinutesAvailable)}
+                        eventHeight={getEventViewHeight(duration, calendarMinutesAvailable)}
+                        eventId={id}
                     />
                 )
             })}
