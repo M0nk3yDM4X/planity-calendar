@@ -1,4 +1,5 @@
 import { EventList } from '../types'
+import Event from './event'
 
 interface ICalendarProps {
     calendarRange: {
@@ -9,12 +10,11 @@ interface ICalendarProps {
 }
 
 function Calendar({ eventList, calendarRange: { calendarEnd, calendarStart } }: ICalendarProps) {
-    console.log('eventList: ', eventList)
-    console.log('calendarEnd: ', calendarEnd)
-    console.log('calendarStart: ', calendarStart)
     return (
         <div className="Calendar">
-            <span>Calendar</span>
+            {eventList.map(event => {
+                return <Event key={`eventId:${event.id}`} event={event} />
+            })}
         </div>
     )
 }

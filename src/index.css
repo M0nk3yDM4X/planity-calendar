@@ -18,3 +18,12 @@ code {
 	position: relative;
 	background-color: #000000;
 }
+
+.Event {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #FFFFFF;
+	position: absolute;
+	background-color: #C7CFD7;
+}
