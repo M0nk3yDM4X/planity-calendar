@@ -17,7 +17,7 @@ function Calendar({ eventList, calendarRange: { calendarEnd, calendarStart } }: 
 
     return (
         <div className="Calendar">
-            {eventList.map(event => {
+            {eventList.map((event, index) => {
                 console.log('event id:', event.id)
                 const timeDifferenceFromCalendarStartToEventStart = getTimeDifferenceInMinutes(calendarStart, event.startDate)
                 console.log('timeDifferenceFromCalendarStartToEventStart: ', timeDifferenceFromCalendarStartToEventStart)
@@ -25,7 +25,16 @@ function Calendar({ eventList, calendarRange: { calendarEnd, calendarStart } }: 
                 const eventWidth = getEventWidth(event.maxOverlap)
                 console.log('eventWidth:', eventWidth)
 
-                return <Event key={`eventId:${event.id}`} event={event} />
+                return (
+                    <Event
+                        key={`eventId:${event.id}`}
+                        eventWidth={50}
+                        eventDistanceFromLeft={50}
+                        eventDistanceFromTop={50}
+                        eventHeight={50}
+                        eventId={index}
+                    />
+                )
             })}
         </div>
     )

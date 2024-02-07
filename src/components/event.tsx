@@ -1,13 +1,16 @@
-import { IEnrichedEvent } from '../types'
-
 interface IEventProps {
-    event: IEnrichedEvent
+    eventId: number
+    eventWidth: number
+    eventHeight: number
+    eventDistanceFromTop: number
+    eventDistanceFromLeft: number
 }
 
-function Event({ event }: IEventProps) {
+function Event({ eventId, eventWidth, eventHeight, eventDistanceFromTop, eventDistanceFromLeft }: IEventProps) {
+    console.log('event style:', eventWidth, eventHeight, eventDistanceFromTop, eventDistanceFromLeft)
     return (
         <div className="Event">
-            <span>Event n°{event.id}</span>
+            <span>Event n°{eventId}</span>
         </div>
     )
 }
