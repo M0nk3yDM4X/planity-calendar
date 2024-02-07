@@ -7,9 +7,16 @@ interface IEventProps {
 }
 
 function Event({ eventId, eventWidth, eventHeight, eventDistanceFromTop, eventDistanceFromLeft }: IEventProps) {
-    console.log('event style:', eventWidth, eventHeight, eventDistanceFromTop, eventDistanceFromLeft)
     return (
-        <div className="Event">
+        <div
+            className="Event"
+            style={{
+                top: `${eventDistanceFromTop}vh`,
+                height: `${eventHeight}vh`,
+                width: `${eventWidth}vw`,
+                left: `${eventDistanceFromLeft}vw`,
+            }}
+        >
             <span>Event n°{eventId}</span>
         </div>
     )
